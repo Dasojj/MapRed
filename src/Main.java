@@ -43,6 +43,8 @@ class Window extends JFrame {
         GamePanel panel = new GamePanel();
         add(panel);
         addKeyListener(panel);
+        addMouseMotionListener(panel);
+        addMouseListener(panel);
         revalidate();
     }
 }

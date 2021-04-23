@@ -123,7 +123,7 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener, Mou
 
         addMouseListener(this);
         addKeyListener(this);
-
+        addMouseMotionListener(this);
         repaint();
     }
 
