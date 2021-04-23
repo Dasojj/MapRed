@@ -1,15 +1,12 @@
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.KeyEvent;
-import java.awt.event.KeyListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 
-public class GamePanel extends JPanel implements KeyListener, MouseListener {
+public class GamePanel extends JPanel implements KeyListener, MouseListener, MouseMotionListener {
     KeyState keyState = new KeyState();
     long t1, t2;
     int currentBlock = 2;
@@ -174,5 +171,23 @@ public class GamePanel extends JPanel implements KeyListener, MouseListener {
     @Override
     public void keyReleased(KeyEvent e) {
         keyState.setKeyState( e.getKeyCode(), false);
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+        int x = e.getX();
+        int y = e.getY();
+
+        int x2 = Camera.getScreenX(player.getCenterX());
+        int y2 = Camera.getScreenY(player.getCenterY());
+        int dy = y - y2;
+        int dx = x - x2;
+        double alpha = Math.atan2(dy, dx);
+        player.setTopAlpha(alpha);
     }
 }
